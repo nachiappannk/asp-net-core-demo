@@ -57,6 +57,11 @@ namespace AspNetCoreDemo.Controllers
 
 
 
-
+        [HttpPost("/reading-path/{name}/{age:int}")]
+        public string ReadPath(string name, int age)
+        {
+            age++;
+            return $"The header value is name:{name} age:{age}";
+        }
     }
 }
