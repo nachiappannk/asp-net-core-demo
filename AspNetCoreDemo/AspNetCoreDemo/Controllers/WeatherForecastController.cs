@@ -55,13 +55,20 @@ namespace AspNetCoreDemo.Controllers
             public string City { get; set; }
         }
 
-
-
         [HttpPost("/reading-path/{name}/{age:int}")]
         public string ReadPath(string name, int age)
         {
             age++;
             return $"The header value is name:{name} age:{age}";
         }
+
+
+        [HttpGet("reading-query")]
+        public string ReadQuery([FromQuery(Name="name")]string name, [FromQuery(Name = "age")] int age)
+        {
+            age++;
+            return $"The header value is name:{name} age:{age}";
+        }
+
     }
 }
