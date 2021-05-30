@@ -56,4 +56,10 @@ namespace AspNetCoreDemo
             });
         }
     }
+
+    //Header
+    //Body
+    //Path
+    //QueryString
+    //GET, POST, PUT, DELETE
 }
