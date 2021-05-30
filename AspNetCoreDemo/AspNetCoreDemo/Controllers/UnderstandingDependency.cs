@@ -10,16 +10,18 @@ namespace AspNetCoreDemo.Controllers
     [Route("ReadingDataFromRequest")]
     public class UnderstandingDependencyController : ControllerBase
     {
-        public UnderstandingDependencyController()
-        {
+        private ObjectTwo objectTwo;
 
+        public UnderstandingDependencyController(ObjectTwo objectTwo)
+        {
+            this.objectTwo = objectTwo;
         }
 
 
         [HttpGet("some-method")]
         public string ReadHeader()
         {
-            return "Some string";
+            return "Some string" + objectTwo.GetString();
         }
     }
 
@@ -38,7 +40,10 @@ namespace AspNetCoreDemo.Controllers
 
     public class ObjectTwo
     {
-
+        public string GetString()
+        {
+            return "result from object two";
+        }
     }
 
 }
