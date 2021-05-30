@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace AspNetCoreDemo.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("WeatherForecast")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -35,5 +35,15 @@ namespace AspNetCoreDemo.Controllers
             })
             .ToArray();
         }
+
+        [HttpGet("/reading-header")]
+        public string ReadHeader([FromHeader(Name = "HeaderName")] string ss, 
+            [FromHeader(Name = "AnotherHeaderName")] string ss2)
+        {
+            return "The header value is " + ss + ss2;
+        }
+
+
+
     }
 }
