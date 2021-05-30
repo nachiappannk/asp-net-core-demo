@@ -34,7 +34,17 @@ namespace AspNetCoreDemo
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AspNetCoreDemo", Version = "v1" });
             });
 
-            services.AddScoped<ObjectTwo>();
+            //services.AddScoped<ObjectTwo>();
+            //services.AddScoped<ObjectOne>();
+
+
+            //services.AddSingleton<ObjectTwo>();
+            //services.AddSingleton<ObjectOne>();
+
+
+            services.AddTransient<ObjectTwo>();
+            services.AddTransient<ObjectOne>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -11,17 +11,23 @@ namespace AspNetCoreDemo.Controllers
     public class UnderstandingDependencyController : ControllerBase
     {
         private ObjectTwo objectTwo;
+        private ObjectOne objectOne;
 
-        public UnderstandingDependencyController(ObjectTwo objectTwo)
+        public UnderstandingDependencyController(ObjectOne objectOne, ObjectTwo objectTwo)
         {
             this.objectTwo = objectTwo;
+            this.objectOne = objectOne;
         }
 
 
         [HttpGet("some-method")]
-        public string ReadHeader()
+        public List<string> ReadHeader()
         {
-            return "Some string" + objectTwo.GetString();
+            var result = new List<string>() {
+                objectOne.GetResult(),
+                objectTwo.GetResult(),
+            };
+            return result;
         }
     }
 
@@ -35,14 +41,20 @@ namespace AspNetCoreDemo.Controllers
         }
 
         public ObjectTwo ObjectTwo { get; }
+
+
+        public string GetResult()
+        {
+            return $" objectone:hashcode:{this.GetHashCode()} -> objecttwo:hashcode:{this.ObjectTwo.GetHashCode()}";
+        }
     }
 
 
     public class ObjectTwo
     {
-        public string GetString()
+        public string GetResult()
         {
-            return "result from object two";
+            return $" objecttwo:hashcode:{this.GetHashCode()}";
         }
     }
 
