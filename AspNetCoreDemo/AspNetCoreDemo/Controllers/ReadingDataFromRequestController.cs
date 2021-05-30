@@ -8,24 +8,24 @@ using System.Threading.Tasks;
 namespace AspNetCoreDemo.Controllers
 {
     [ApiController]
-    [Route("WeatherForecast")]
-    public class WeatherForecastController : ControllerBase
+    [Route("ReadingDataFromRequest")]
+    public class ReadingDataFromRequestController : ControllerBase
     {
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<ReadingDataFromRequestController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public ReadingDataFromRequestController(ILogger<ReadingDataFromRequestController> logger)
         {
             _logger = logger;
         }
 
-        [HttpGet("/reading-header")]
+        [HttpGet("reading-header")]
         public string ReadHeader([FromHeader(Name = "HeaderName")] string ss, 
             [FromHeader(Name = "AnotherHeaderName")] string ss2)
         {
             return "The header value is " + ss + ss2;
         }
 
-        [HttpPost("/reading-body")]
+        [HttpPost("reading-body")]
         public string ReadBody([FromBody] RequestBody requestBody)
         {
             return $"The header value is name:{requestBody.Name} city:{requestBody.City}";
@@ -37,7 +37,7 @@ namespace AspNetCoreDemo.Controllers
             public string City { get; set; }
         }
 
-        [HttpPost("/reading-path/{name}/{age:int}")]
+        [HttpPost("reading-path/{name}/{age:int}")]
         public string ReadPath(string name, int age)
         {
             age++;
