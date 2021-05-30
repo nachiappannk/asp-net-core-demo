@@ -43,6 +43,19 @@ namespace AspNetCoreDemo.Controllers
             return "The header value is " + ss + ss2;
         }
 
+        [HttpPost("/reading-body")]
+        public string ReadBody([FromBody] RequestBody requestBody)
+        {
+            return $"The header value is name:{requestBody.Name} city:{requestBody.City}";
+        }
+
+        public class RequestBody 
+        {
+            public string Name { get; set; }
+            public string City { get; set; }
+        }
+
+
 
 
     }
